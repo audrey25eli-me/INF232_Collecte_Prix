@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analyse Descriptive - INF 232</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
+        .stats-box { display: flex; gap: 20px; margin-bottom: 30px; }
+        .card { background: #007bff; color: white; padding: 20px; border-radius: 10px; flex: 1; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>📈 Analyse Descriptive des Prix</h1>
+
+    <div class="stats-box">
+        <div class="card">
+            <h3>Moyenne</h3>
+            <p>{{ stats.prix_moyen|floatformat:2 }} FCFA</p>
+        </div>
+        <div class="card" style="background-color: #28a745;">
+            <h3>Total Collectes</h3>
+            <p>{{ stats.total_collectes }}</p>
+        </div>
+        <div class="card" style="background-color: #dc3545;">
+            <h3>Prix Max</h3>
+            <p>{{ stats.prix_max }} FCFA</p>
+        </div>
+    </div>
+
+    <h2>Détail des données collectées</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Produit</th>
+            <th>Marché</th>
+            <th>Prix (FCFA)</th>
+            <th>Collecteur</th>
+        </tr>
+        {% for item in releves %}
+        <tr>
+            <td>{{ item.date_collecte }}</td>
+            <td>{{ item.produit.nom }}</td>
+            <td>{{ item.marche }}</td>
+            <td>{{ item.prix }}</td>
+            <td>{{ item.collecteur }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
